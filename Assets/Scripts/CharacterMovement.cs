@@ -31,19 +31,25 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 MoveDirection = transform.right*Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
-        CharController.Move(MoveDirection * Speed * Time.deltaTime * (Input.GetKey(KeyCode.LeftControl)?0.5f:1f));
-        if (!CharController.isGrounded)
+        
+
+        Vector3 MoveDirection = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        MoveDirection *= (Input.GetKey(KeyCode.LeftControl) ? 0.5f : 1f) * Speed;
+
+        Debug.Log("grounded: " + CharController.isGrounded);
+        Debug.Log("Space: " + Input.GetKeyDown(KeyCode.Space));
+
+        if ( !CharController.isGrounded)
         {
-            YSpeed = Mathf.Max(YSpeed - Gravity, -2f);
-            CharController.Move(transform.up * YSpeed);
-        }
-     
-        if(Input.GetKeyDown(KeyCode.Space) && CharController.isGrounded)
+            Debug.Log("gravity");
+            YSpeed = Mathf.Max(YSpeed - Gravity * Time.deltaTime, -100f);
+
+            MoveDirection += transform.up * YSpeed;
+        }else if(Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("jump");  
             YSpeed = JumpForce;
-            Debug.Log(YSpeed);
-            CharController.Move(Vector3.up * YSpeed);
+            MoveDirection += transform.up * YSpeed;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -56,7 +62,8 @@ public class CharacterMovement : MonoBehaviour
             PlayerCameraObj.transform.localPosition = Vector3.up * (DefaultHeight / 2);
             CharController.height = DefaultHeight;
         }
-        
+
+        CharController.Move(MoveDirection  * Time.deltaTime);
 
 
     }
