@@ -4,27 +4,39 @@ using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
-    [SerializeField]
-    private MeshCollider InteractiveObject;
+
+    Vector3 centerPosition;
 
     [SerializeField]
-    private BoxCollider Player;
+    private GameObject doorToOpen;
+
+    private GameObject Player;
+
+    [SerializeField]
+    private float detectionDistance;
 
 
+	void Start()
+	{
+        Player = GameObject.FindWithTag("Player");
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        centerPosition = gameObject.GetComponent<Collider>().bounds.center;
     }
 
-    // Update is called once per frame
-    void Update()
+
+	// Update is called once per frame
+	void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        bool IsPlayerNear = Vector3.Distance(Player.transform.position, centerPosition) < detectionDistance;
+
+        if(Input.GetKeyDown(KeyCode.E) && IsPlayerNear == true)
 		{
-            
+            doorToOpen.SetActive(!doorToOpen.activeSelf);
 		}
     }
+
+	void OnDrawGizmos()
+	{
+        Gizmos.DrawWireSphere(transform.position, detectionDistance);
+	}
 }
