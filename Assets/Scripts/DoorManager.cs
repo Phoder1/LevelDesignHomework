@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
+    [SerializeField]
+    private MeshCollider InteractiveObject;
 
-
-
-
+    [SerializeField]
+    private BoxCollider Player;
 
 
 
@@ -21,6 +22,9 @@ public class DoorManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.E))
+		{
+            
+		}
     }
 }
