@@ -18,6 +18,9 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private GameObject PlayerCameraObj;
 
+    [SerializeField]
+    GameObject canvas;
+
 
 
     // Start is called before the first frame update
@@ -31,7 +34,9 @@ public class CharacterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+            canvas.SetActive(!canvas.activeSelf);
+        }
 
         Vector3 MoveDirection = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
         MoveDirection *= (Input.GetKey(KeyCode.LeftControl) ? 0.5f : 1f) * Speed;
