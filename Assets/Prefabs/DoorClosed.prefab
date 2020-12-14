@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 9036288211317803030}
   - component: {fileID: 9036288211317803025}
   - component: {fileID: 9036288211317803024}
-  - component: {fileID: 8307786088924862002}
   m_Layer: 0
   m_Name: DoorClosed
   m_TagString: Untagged
@@ -312,15 +311,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &8307786088924862002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9036288211317803027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e09781af97d7a4586c23234d3b59a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
