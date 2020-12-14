@@ -8,7 +8,7 @@ public class DoorManager : MonoBehaviour
     Vector3 centerPosition;
 
     [SerializeField]
-    private GameObject doorToOpen;
+    private GameObject objectToInteract;
 
     private GameObject Player;
 
@@ -31,7 +31,7 @@ public class DoorManager : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.E) && IsPlayerNear == true)
 		{
-            doorToOpen.SetActive(!doorToOpen.activeSelf);
+            objectToInteract.SetActive(!objectToInteract.activeSelf);
 		}
     }
 
